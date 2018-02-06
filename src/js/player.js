@@ -10,9 +10,10 @@ export default class Player {
 		return
 	}
 	async vote(players){
-		return new Promise((resolve, reject) => {
+		await new Promise((resolve, reject) => {
 			this.emit('watingVote', new WatingVoteEvent({players: players}, resolve))
 		}
+		return
 	}
 	kill(){
 		this.dead = true

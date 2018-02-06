@@ -11,6 +11,7 @@ export class Village extends EventEmitter {
 		this.day = 0
 		this.phase = PHASE.NIGHT
 		this.players = players
+		this.executedPlayers = []
 	}
 	async next(){
 		if(this.pahes === PHASE.DAY){
@@ -31,18 +32,23 @@ export class Village extends EventEmitter {
 		const topVotesPlayers = top(count(votes))
 
 		// Execution player
-		topVotesPlayers[Math.floor(Math.random() * topVotesPlayers.length)].kill()
+		const toBeExecutedPlayer = topVotesPlayers[Math.floor(Math.random() * topVotesPlayers.length)]
+		this.executedPlayers.push(toBeExecutedPlayer)
+		toBeExecutedPlayer.kill()
 
+		await this.detectEndOfTheGame()
 		return
 	}
 	async night(){
 		// Execute action each players
 		await Promise.all(this.survivalPlayers.map(player => player.action(this)))
+
+		await this.detectEndOfTheGame()
 		return
 	}
 
 	async detectEndOfTheGame(){
-
+		
 	}
 
 	get survivalPlayers(){

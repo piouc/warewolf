@@ -11,7 +11,7 @@ export default class Vilagger extends Player {
 	}
 }
 
-class WatingKill extends Event {
+class WatingKillEvent extends Event {
 	constructor(options){
 		super('watingKill')
 	}
