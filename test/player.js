@@ -42,3 +42,6 @@ test('Vote', async t => {
 
 })
 
+test('Action', async t => {
+	t.is(typeof await t.context.player.action(), 'undefined')
+})
