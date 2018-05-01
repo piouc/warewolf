@@ -16,7 +16,9 @@ test('player has name', t => {
 })
 
 test('Kill player', t => {
+	t.plan(2)
 	const player = t.context.player
+	player.on('die', () => t.pass())
 	player.kill()
 	t.true(player.dead)
 })
@@ -44,4 +46,11 @@ test('Vote', async t => {
 
 test('Action', async t => {
 	t.is(typeof await t.context.player.action(), 'undefined')
+})
+
+test('Fire die event when player dead', t => {
+	const player = t.context.player
+	t.plan(1)
+	player.on('die', () => t.pass())
+	player.kill()
 })

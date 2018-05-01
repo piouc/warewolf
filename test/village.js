@@ -1,7 +1,7 @@
 import test from 'ava'
 
 import Village from '../lib/village.js'
-import Villager from '../lib/vilagger.js'
+import Villager from '../lib/villager.js'
 import Warewolf from '../lib/warewolf.js'
 
 import PHASE from '../lib/constants/phase.js'
@@ -50,8 +50,6 @@ test('Play game', async t => {
 	t.is(village.day, 0)
 	t.is(village.phase, PHASE.DAY)
 	t.is(village.survivalPlayers.length, 3)
-
-
 
 	await village.next()
 	t.is(village.day, 0)
