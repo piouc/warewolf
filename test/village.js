@@ -2,7 +2,7 @@ import test from 'ava'
 
 import Village from '../lib/village.js'
 import Villager from '../lib/villager.js'
-import Warewolf from '../lib/warewolf.js'
+import Werewolf from '../lib/werewolf.js'
 
 import PHASE from '../lib/constants/phase.js'
 
@@ -10,7 +10,7 @@ test.beforeEach(t => {
 	t.context.village = new Village({players: [
 		new Villager('Cindy'),
 		new Villager('Don'),
-		new Warewolf('Emily')
+		new Werewolf('Emily')
 	]})
 })
 
@@ -35,10 +35,10 @@ test('Village has survivalPlayers', t => {
 
 test('Play game', async t => {
 	const village = t.context.village
-	const warewolf = village.players.find(p => p instanceof Warewolf)
+	const werewolf = village.players.find(p => p instanceof Werewolf)
 
 	// Always Kill first Villager
-	warewolf.on('watingKill', e => {
+	werewolf.on('watingKill', e => {
 		e.kill(village.players.filter(p => p instanceof Villager)[0])
 	})
 
@@ -63,6 +63,6 @@ test('Detect end', async t => {
 	const village = t.context.village
 	t.false(await village.detectEnd())
 	// kill all warewolves
-	village.survivalPlayers.filter(p => p.warewolf).forEach(p => p.kill())
+	village.survivalPlayers.filter(p => p.werewolf).forEach(p => p.kill())
 	t.true(await village.detectEnd())
 })

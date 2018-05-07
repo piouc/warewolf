@@ -54,3 +54,10 @@ test('Fire die event when player dead', t => {
 	player.on('die', () => t.pass())
 	player.kill()
 })
+
+test('Fire end event when called end method', async t => {
+	const player = t.context.player
+	t.plan(1)
+	player.on('end', () => t.pass())
+	await player.end()
+})
