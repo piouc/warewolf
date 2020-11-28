@@ -1,7 +1,7 @@
 {
   "ava": {
     "require": [
-      "babel-register"
+      "esm"
     ]
   },
   "name": "werewolf",
@@ -9,15 +9,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run js -- -d -w & npm run css -- -w -v & watch 'npm run static' ./client/static/ &  http-server dist",
+    "build": "rm -rf ./dist/* && npm run static && npm run js -- -p & npm run css -- -u cssnano",
+    "static": "rsync -av ./client/static/ ./dist/",
+    "js": "webpack --config webpack.config.js",
+    "css": "postcss --no-map -u postcss-import -u postcss-nested -u autoprefixer -u postcss-sorting -o dist/index.css client/css/index.css",
     "test": "ava"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "ava": "^1.0.0-beta.4",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0"
+    "autoprefixer": "^9.1.1",
+    "ava": "^1.0.0-beta.7",
+    "cssnano": "^4.0.5",
+    "http-server": "^0.11.1",
+    "postcss": "^7.0.2",
+    "postcss-cli": "^6.0.0",
+    "postcss-import": "^12.0.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-sorting": "^4.0.0",
+    "watch": "^1.0.2",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "esm": "^3.0.76"
   }
 }

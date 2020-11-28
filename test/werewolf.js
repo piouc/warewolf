@@ -1,7 +1,7 @@
 import test from 'ava'
 
 import Village from '../lib/village.js'
-import Werewolf from '../lib/werewolf.js'
+import Werewolf, {WAREWOLF_VOTES} from '../lib/werewolf.js'
 import Villager from '../lib/villager.js'
 
 test('Kill player', async t => {
@@ -11,9 +11,8 @@ test('Kill player', async t => {
 		werewolf,
 		villager
 	]})
-
-	werewolf.on('watingKill', e => {
-		e.kill(e.killablePlayers[0])
+	werewolf.on('watingKillPlayerVote', e => {
+		e.vote(e.killablePlayers[0])
 	})
 	village.context = {}
 	await werewolf.action(village)
