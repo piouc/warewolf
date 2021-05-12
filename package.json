@@ -24,7 +24,7 @@
     "ava": "^1.0.0-beta.7",
     "cssnano": "^4.0.5",
     "http-server": "^0.11.1",
-    "postcss": "^7.0.2",
+    "postcss": "^8.2.10",
     "postcss-cli": "^6.0.0",
     "postcss-import": "^12.0.0",
     "postcss-nested": "^3.0.0",
